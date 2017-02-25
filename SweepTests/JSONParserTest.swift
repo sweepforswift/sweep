@@ -76,6 +76,12 @@ class JSONParserTest: XCTestCase {
         XCTAssertEqual(jsonString, "[{\"test:\" 42},{\"test:\" 43}]")
     }
     
+    func testCanConvertData(){
+        let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}".data(using: .utf8)
+        let object : [String : Any] = JSONParser.parse(jsonData: json!)!
+        XCTAssert(object["someKey"] as? Int == 42)
+    }
+    
 }
 
 class FakeObject: JSONAble{

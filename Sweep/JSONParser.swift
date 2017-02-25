@@ -48,7 +48,16 @@ public extension Sequence where Iterator.Element: JSONAble{
 public class JSONParser{
     public static func parse<T>(jsonString: String) -> T?{
         let data = jsonString.data(using: .utf8)
-        let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+        let json:T? = self.parse(jsonData: data!)
+        
+        guard let result = json as T? else{
+            return nil
+        }
+        return result
+    }
+    
+    public static func parse<T>(jsonData: Data) -> T?{
+        let json = try? JSONSerialization.jsonObject(with: jsonData, options: [])
         
         guard let result = json as? T else{
             return nil
