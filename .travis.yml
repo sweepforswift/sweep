@@ -2,3 +2,7 @@ language: objective-c
 xcode_project: Sweep.xcodeproj # path to your xcodeproj folder
 xcode_scheme: SweepTests
 osx_image: xcode8.2
+
+branches:
+  only:
+  - develop
