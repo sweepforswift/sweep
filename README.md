@@ -15,7 +15,11 @@ This application is under active development and will continue to be modified an
     - [SafeArrays](#safearrays)
         -METHODS GO HERE
     - [JSON-Parser](#json-parser)
-        -METHODS GO HERE
+        - [Parse For Strings](#parse-for-strings)
+        - [Parse For Data](#parse-for-data)
+        - [Parse To Objects](#parse-to-objects)
+        - [JSONAble Protocol](#jsonable-protocol)
+        - [To JSON](#to-json)
     - [Web-Requests](#web-requests)
         -METHODS GO HERE
     - [ProgrammaticUI-Constraints](#programmatic-ui-constraints)
@@ -45,6 +49,106 @@ Anyone is encouraged to contribute to the project by [forking](https://help.gith
 ### SafeArrays
 
 ### JSON Parser
+
+#### Parse For Strings
+The `parse` function takes in a JSON string called jsonString as a `String` and returns an either a `Dictionary<String,Any>?` or `[Any]?` based upon the type of the variable the call is being assigned to. In the case of malformed JSON, nil will be returned.
+
+For a `Dictionary`
+```swift
+let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}"
+let object : [String : Any]? = JSONParser.parse(jsonString: json)
+if let object = object {
+    //work with return dictionary
+}
+```
+`object` will now hold the unwrapped `Dictionary<String,Any>` that corresponds to the JSON object.
+
+For an `Array`
+```swift
+let json = "[\"hello\", 3, true]"
+let array : [Any]? = JSONParser.parse(jsonString: json)
+if let array = array {
+    //work with return array
+}
+```
+`array` will now hold the unwrapped `[Any]` that corresponds to the JSON array.
+
+#### Parse For Data
+
+The `parse` function can also take in `Data` called jsonData, parse it, and returns an either a `Dictionary<String,Any>?` or `[Any]?` based upon the type of the variable the call is being assigned to. In the case of malformed JSON, nil will be returned.
+
+```swift
+let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}".data(using: .utf8)
+let object : [String : Any]? = JSONParser.parse(jsonData: json!)
+if let object = object{
+    //work with return object
+}
+```
+`object` now holds the unwrapped `Dictionary<String,Any>` that corresponds to the JSON obect. The same syntax also holds for dealing with arrays.
+
+#### Parse To Objects
+
+The `parse` function can also be used to convert JSON to instances of classes that conform to the JSONAble protocol that is shown below. The JSON is parsed and is then passed to a required initializer that allows control over what the JSON data gets assigned to.
+
+For a `Dictionary<String,Any>`
+```swift
+class FakeObject: JSONAble{
+    var test: Int?
+    required init(json: [String:Any]){
+        test = json["someKey"] as! Int?
+    }
+}
+
+let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}"
+let object : [FakeObject]? = JSONParser.parse(toObject: json)
+if let rObject = object?[0]{
+    //rObject now holds the singular object
+}
+```
+`rObject` holds the object instance filled with the JSON data.
+
+For an `Array`
+```swift
+let json = "[{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}},{\"someKey\": 43.0,\"anotherKey\": {\"someNestedKey\": true}}]"
+let object : [FakeObject]? = JSONParser.parse(toObject: json)
+if let object = object{
+    //now have access to the array of objects
+}
+```
+`object` now holds the array of created objects filled with the JSON data.
+
+#### JSONAble Protocol
+The JSONAble protocol ensures that objects have an initializer that accepts a `Dictionary<String,Any>`.
+
+```swift
+public protocol JSONAble{
+    init(json: [String:Any])
+}
+```
+
+Additionally, the JSONAble protocol allows these objects to be converted into JSON strings from their instances due to the `toJSON` method shown below.
+
+#### To JSON
+
+For a singular object
+```swift
+let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}"
+let object : [FakeObject]? = JSONParser.parse(toObject: json)
+if let object = object{
+    let jsonString = rObject.toJSON()
+}
+```
+`jsonString` now holds the result of turing the object into a JSON string.
+
+For an `Array`
+```swift
+let json = "[{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}},{\"someKey\": 43.0,\"anotherKey\": {\"someNestedKey\": true}}]"
+let object : [FakeObject]? = JSONParser.parse(toObject: json)
+if let object = object{
+    let jsonString = rObjects.toJSON()
+}
+```
+`jsonString` now holds the JSON string form of the array.
 
 ### Web Requests
 
