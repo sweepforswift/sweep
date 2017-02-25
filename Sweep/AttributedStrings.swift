@@ -63,7 +63,7 @@ public extension NSMutableAttributedString {
         return attributedString
     }
 
-    public func addConstraints(style: Style, fontSize: Int, range: NSRange? = nil)->NSMutableAttributedString{
+    public func addConstraints(style: Style, fontSize: Int = 17, range: NSRange? = nil)->NSMutableAttributedString{
         
         var trueRange: NSRange
         if let range = range{
