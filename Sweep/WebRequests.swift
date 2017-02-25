@@ -39,4 +39,43 @@ public class WebRequests: NSObject{
         
     }
     
+//    func deleteRequest(url:String, deleteString:String) -> Request?{
+//        guard let url = URL(string: url) else{
+//            print("Couldnt cast URL string")
+//            return nil
+//        }
+//        var request = URLRequest(url:url)
+//        request.httpMethod = "DELETE"
+//        request.httpBody = deleteString.data(using: .utf8)
+//        
+//        let requestObject = Request(request:request)
+//        return requestObject
+//    }
+    
+    func deleteRequest(url:String) -> Request?{
+        guard let url = URL(string: url) else{
+            print("Couldnt cast URL string")
+            return nil
+        }
+        
+        var request = URLRequest(url:url)
+        request.httpMethod = "DELETE"
+        
+        let requestObject = Request(request:request)
+        return requestObject
+        
+    }
+    
+    func putRequest(url:String) -> Request?{
+        guard let url = URL(string: url) else{
+            print("Couldnt cast URL string")
+            return nil
+        }
+        var request = URLRequest(url:url)
+        request.httpMethod = "PUT"
+        
+        let requestObject = Request(request:request)
+        return requestObject
+    }
+    
 }

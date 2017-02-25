@@ -58,10 +58,6 @@ class Request {
                 }
             }
             
-            
-            
-            
-            
             print("Parsing the JSON")
             if let json = try? JSONSerialization.jsonObject(with: data!){
                 completion(json, err, Status.success)
@@ -82,4 +78,6 @@ class Request {
             }
         }
     }
+    
+    
 }

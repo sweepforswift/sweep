@@ -62,7 +62,7 @@ class WebRequestsTests: XCTestCase {
     
     func testGetJSONRequest(){
         let expectation = self.expectation(description: "async request")
-        let json = webRequests.getRequest(url: "http://reikerseiffe.com/firstProject")?.toJSON{
+        webRequests.getRequest(url: "http://reikerseiffe.com/firstProject")?.toJSON{
             (response:Any?, err:Error?, status: Status) in
             print("response \(response)")
             print("error \(err)")
@@ -76,7 +76,7 @@ class WebRequestsTests: XCTestCase {
     
     func testGetCodeRequest(){
         let expectation = self.expectation(description: "async")
-        let code = webRequests.getRequest(url: "http://reikerseiffe.com/status")?.toHTTPStatus{
+        webRequests.getRequest(url: "http://reikerseiffe.com/status")?.toHTTPStatus{
             (response:HTTPURLResponse?, err:Error?) in
             print("response \(response?.statusCode)")
             print("error \(err)")
@@ -90,7 +90,7 @@ class WebRequestsTests: XCTestCase {
     
     func testGetCodeRequestBadURL(){
         let expectation = self.expectation(description: "async")
-        let code = webRequests.getRequest(url: "http://reikerseiffe.com/statu")?.toHTTPStatus{
+        webRequests.getRequest(url: "http://reikerseiffe.com/statu")?.toHTTPStatus{
             (response:HTTPURLResponse?, err:Error?) in
             print("response \(response?.statusCode)")
             print("error \(err)")
@@ -104,7 +104,7 @@ class WebRequestsTests: XCTestCase {
     
     func testGetJSONRequestBadURL(){
         let expectation = self.expectation(description: "async request")
-        let json = webRequests.getRequest(url: "http://reikerseiffe.com/firstProjec")?.toJSON{
+        webRequests.getRequest(url: "http://reikerseiffe.com/firstProjec")?.toJSON{
             (response:Any?, err:Error?, status: Status) in
             print("response \(response)")
             print("error \(err)")
@@ -128,7 +128,7 @@ class WebRequestsTests: XCTestCase {
     
     func testPostJSONRequest(){
         let expectation = self.expectation(description: "async request")
-        let json = webRequests.postRequest(url: "http://reikerseiffe.com/projectByName", postString: "name=notevote")?.toJSON{
+        webRequests.postRequest(url: "http://reikerseiffe.com/projectByName", postString: "name=notevote")?.toJSON{
             (response:Any?, err:Error?, status: Status) in
             print("response \(response)")
             print("error \(err)")
@@ -142,13 +142,13 @@ class WebRequestsTests: XCTestCase {
     
     func testPostCodeRequest(){
         let expectation = self.expectation(description: "async")
-        let code = webRequests.postRequest(url: "http://reikerseiffe.com/status", postString: "nam=Reiker")?.toHTTPStatus{
+        webRequests.postRequest(url: "http://reikerseiffe.com/status", postString: "name=Reiker")?.toHTTPStatus{
             (response:HTTPURLResponse?, err:Error?) in
             print("response \(response?.statusCode)")
             print("error \(err)")
             expectation.fulfill()
             
-            XCTAssert(response?.statusCode == 200)
+            XCTAssert(response!.statusCode == 200)
         }
         
         self.waitForExpectations(timeout: 10.0, handler: nil)
@@ -156,7 +156,7 @@ class WebRequestsTests: XCTestCase {
     
     func testPostCodeRequestBadURL(){
         let expectation = self.expectation(description: "async")
-        let code = webRequests.postRequest(url: "http://reikerseiffe.com/statu", postString: "name=reiker")?.toHTTPStatus{
+        webRequests.postRequest(url: "http://reikerseiffe.com/statu", postString: "name=reiker")?.toHTTPStatus{
             (response:HTTPURLResponse?, err:Error?) in
             print("response \(response?.statusCode)")
             print("error \(err)")
@@ -170,7 +170,7 @@ class WebRequestsTests: XCTestCase {
     
     func testPostJSONRequestBadURL(){
         let expectation = self.expectation(description: "async request")
-        let json = webRequests.postRequest(url: "http://reikerseiffe.com/firstProjec", postString: "name=reiker")?.toJSON{
+        webRequests.postRequest(url: "http://reikerseiffe.com/firstProjec", postString: "name=reiker")?.toJSON{
             (response:Any?, err:Error?, status: Status) in
             print("response \(response)")
             print("error \(err)")
@@ -182,6 +182,116 @@ class WebRequestsTests: XCTestCase {
         
         self.waitForExpectations(timeout: 5.0, handler: nil)
     }
+    
+    /***************************************************************/
+    //
+    //
+    //DELETE REQUESTS
+    //
+    //
+    /***************************************************************/
+    
+    func testDeleteCodeRequestBadURL(){
+        let expectation = self.expectation(description: "async")
+        webRequests.deleteRequest(url: "http://reikerseiffe.com/usr/123")?.toHTTPStatus{
+            (response:HTTPURLResponse?, err:Error?) in
+            print("response \(response!.statusCode)")
+            print("error \(err)")
+            expectation.fulfill()
+            
+            XCTAssert(response!.statusCode == 404)
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+    
+    func testDeleteCodeRequestBadRequest(){
+        
+        let expectation = self.expectation(description: "async")
+        webRequests.deleteRequest(url: "http://reikerseiffe.com/user/1")?.toHTTPStatus{
+            (response:HTTPURLResponse?, err:Error?) in
+            print("response \(response!.statusCode)")
+            print("error \(err)")
+            expectation.fulfill()
+            
+            XCTAssert(response!.statusCode == 404)
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+        
+    }
+    
+    
+    func testDeleteCodeRequest(){
+        let expectation = self.expectation(description: "async")
+        webRequests.deleteRequest(url: "http://reikerseiffe.com/user/123")?.toHTTPStatus{
+            (response:HTTPURLResponse?, err:Error?) in
+            print("response \(response?.statusCode)")
+            print("error \(err)")
+            expectation.fulfill()
+            
+            XCTAssert(response!.statusCode == 200)
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+    
+    /***************************************************************/
+    //
+    //
+    //PUT REQUESTS
+    //
+    //
+    /***************************************************************/
+
+    
+    func testPutCodeRequest(){
+        let expectation = self.expectation(description: "async")
+        webRequests.putRequest(url: "http://reikerseiffe.com/user/123/order/55")?.toHTTPStatus{
+            (response:HTTPURLResponse?, err:Error?) in
+            print("response \(response!.statusCode)")
+            print("error \(err)")
+            XCTAssertEqual(response!.statusCode, 200)
+            
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+    
+    func testPutCodeRequestBadUrl(){
+        let expectation = self.expectation(description: "async")
+        webRequests.putRequest(url: "http://reikerseiffe.com/user/123/orde/55")?.toHTTPStatus{
+            (response:HTTPURLResponse?, err:Error?) in
+            print("response \(response!.statusCode)")
+            print("error \(err)")
+            XCTAssertEqual(response!.statusCode, 404)
+            
+            expectation.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+
+    func testPutCodeRequestbadUrl2(){
+        let expectation = self.expectation(description: "async")
+        webRequests.putRequest(url: "http://reikerseiffe.com/usr/123/order/55")?.toHTTPStatus{
+            (response:HTTPURLResponse?, err:Error?) in
+            print("response \(response!.statusCode)")
+            print("error \(err)")
+            
+            XCTAssertEqual(response!.statusCode, 404)
+            
+            expectation.fulfill()
+            
+            
+        }
+        
+        self.waitForExpectations(timeout: 10.0, handler: nil)
+    }
+
+    
+    
     
     
     
