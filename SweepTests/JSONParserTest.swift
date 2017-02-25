@@ -23,7 +23,6 @@ class JSONParserTest: XCTestCase {
     
     func testParsesJSONObject() {
         let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}"
-        //let json = "[\"hello\", 3, true]"
         let object : [String : Any] = JSONParser.parse(jsonString: json)!
         XCTAssert(object["someKey"] as? Int == 42)
         
@@ -37,7 +36,6 @@ class JSONParserTest: XCTestCase {
     
     func testRejectsMalformedObject(){
         let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}"
-        //let json = "[\"hello\", 3, true]"
         let object : [String : Any]? = JSONParser.parse(jsonString: json)
         XCTAssert(object == nil)
     }
@@ -48,4 +46,41 @@ class JSONParserTest: XCTestCase {
         XCTAssert(object == nil)
     }
     
+    func testCanParseObject(){
+        let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}"
+        let object : [FakeObject]? = JSONParser.parse(toObject: json)
+        let rObject = object?[0]
+        XCTAssert(rObject?.test == 42)
+    }
+    
+    func testRejectsMalformedJSONForObject(){
+        let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}"
+        let object : [FakeObject]? = JSONParser.parse(toObject: json)
+        let rObject = object?[0]
+        XCTAssert(rObject == nil)
+    }
+    
+    func testObjectCanBecomeJSONString(){
+        let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}}"
+        let object : [FakeObject]? = JSONParser.parse(toObject: json)
+        let rObject = object?[0]
+        let jsonString = rObject!.toJSON()
+        XCTAssertEqual(jsonString, "{\"test:\" 42}")
+    }
+    
+    func testArrayCanBecomeJSONString(){
+        let json = "[{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}},{\"someKey\": 43.0,\"anotherKey\": {\"someNestedKey\": true}}]"
+        let object : [FakeObject]? = JSONParser.parse(toObject: json)
+        let rObjects = object
+        let jsonString = rObjects!.toJSON()
+        XCTAssertEqual(jsonString, "[{\"test:\" 42},{\"test:\" 43}]")
+    }
+    
+}
+
+class FakeObject: JSONAble{
+    var test: Int?
+    required init(json: [String:Any]){
+        test = json["someKey"] as! Int?
+    }
 }
