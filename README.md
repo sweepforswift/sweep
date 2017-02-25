@@ -30,15 +30,17 @@ This application is under active development and will continue to be modified an
 
 ## Goals
 
-Releasing the source code for this library is meant to empower other developers and organizations through the simplification of common tasks in iOS development. In addition, public review and contribution to the application’s code base will help strengthen and improve the platform.
+Releasing the source code for this library is meant to empower other developers and organizations through the simplification of common tasks in iOS development. In addition, we hope that public review and contribution of this code base will help strengthen and improve capability of the library.
 
-We hope to see this library grow and develop in the open source community and increase in complexity so that those who use it can get right into the development of thier applications.
+We hope to see this library grow and develop in the open source community and increase in complexity so that those who use it can get right into the development of their applications.
 
 ## Contributing
 
 Anyone is encouraged to contribute to the project by [forking](https://help.github.com/articles/fork-a-repo) and submitting a pull request. (If you are new to GitHub, you might start with a [basic tutorial](https://help.github.com/articles/set-up-git).)
 
 ## Usage
+
+
 
 ### Arrays
 
@@ -123,3 +125,4 @@ testString = testString.addConstraints(style: .italic, fontSize: 15, range: NSMa
 ## Credits
 
 ## License
+The Sweep library is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
