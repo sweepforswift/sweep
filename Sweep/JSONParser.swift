@@ -65,9 +65,8 @@ public class JSONParser{
         return result
     }
     
-    public static func parse<T>(toObject jsonString: String) -> [T]? where T:JSONAble{
-        let data = jsonString.data(using: .utf8)
-        let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+    public static func parse<T>(toObject jsonData:Data) -> [T]? where T:JSONAble{
+        let json = try? JSONSerialization.jsonObject(with: jsonData, options: [])
         
         if let result = json as? [String:Any]{
             return [T(json: result)]
@@ -80,7 +79,12 @@ public class JSONParser{
             }
             return data
         }
-        
+
         return nil
+    }
+    
+    public static func parse<T>(toObject jsonString: String) -> [T]? where T:JSONAble{
+        let data = jsonString.data(using: .utf8)
+        return self.parse(toObject: data!)
     }
 }

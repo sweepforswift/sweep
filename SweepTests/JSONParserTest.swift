@@ -53,6 +53,13 @@ class JSONParserTest: XCTestCase {
         XCTAssert(rObject?.test == 42)
     }
     
+    func testCanParseArrayToObjects(){
+        let json = "[{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}},{\"someKey\": 43.0,\"anotherKey\": {\"someNestedKey\": true}}]"
+        let object : [FakeObject]? = JSONParser.parse(toObject: json)
+        let rObjects = object
+        XCTAssert(rObjects?.count == 2)
+    }
+    
     func testRejectsMalformedJSONForObject(){
         let json = "{\"someKey\": 42.0,\"anotherKey\": {\"someNestedKey\": true}"
         let object : [FakeObject]? = JSONParser.parse(toObject: json)
