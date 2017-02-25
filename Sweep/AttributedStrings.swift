@@ -30,36 +30,56 @@ public extension NSMutableAttributedString {
         return self
     }
     
-    public func changeFontColor(color: UIColor)->NSMutableAttributedString{
+    public func changeFontColor(color: UIColor, range: NSRange? = nil)->NSMutableAttributedString{
         
-        let range = (self.string as NSString).range(of: self.string)
         
         let attributedString = NSMutableAttributedString(string: self.string)
-        attributedString.addAttribute(NSForegroundColorAttributeName, value: color , range: range)
+        var trueRange: NSRange
+        if let range = range{
+            trueRange = range
+        }else{
+            trueRange = (self.string as NSString).range(of: self.string)
+        }
+        
+        attributedString.addAttribute(NSForegroundColorAttributeName, value: color , range: trueRange)
         
         return attributedString
     }
     
     
-    public func highlight()->NSMutableAttributedString{
-        
-        let range = (self.string as NSString).range(of: self.string)
+    public func highlight(range: NSRange? = nil)->NSMutableAttributedString{
         
         let attributedString = NSMutableAttributedString(string: self.string)
-        attributedString.addAttribute(NSBackgroundColorAttributeName, value: UIColor.yellow , range: range)
+        
+        var trueRange: NSRange
+        if let range = range{
+            trueRange = range
+        }else{
+            trueRange = (self.string as NSString).range(of: self.string)
+        }
+        
+        attributedString.addAttribute(NSBackgroundColorAttributeName, value: UIColor.yellow , range: trueRange)
         
         return attributedString
     }
 
-    public func addConstraints(style: Style, fontSize: Int)->NSMutableAttributedString{
+    public func addConstraints(style: Style, fontSize: Int, range: NSRange? = nil)->NSMutableAttributedString{
         
+        var trueRange: NSRange
+        if let range = range{
+            trueRange = range
+        }else{
+            trueRange = NSMakeRange(0, self.length)
+        }
+        
+    
         switch style {
         case .bold:
             let myAttribute = [ NSFontAttributeName: UIFont.boldSystemFont(ofSize: CGFloat(fontSize)) ]
-            self.addAttribute(self.string, value: myAttribute, range: NSMakeRange(0, self.length))
+            self.addAttribute(self.string, value: myAttribute, range: trueRange)
         case .italic:
             let myAttribute = [ NSFontAttributeName: UIFont.italicSystemFont(ofSize: CGFloat(fontSize)) ]
-            self.addAttribute(self.string, value: myAttribute, range: NSMakeRange(0, self.length))
+            self.addAttribute(self.string, value: myAttribute, range: trueRange)
         }
         
         return self

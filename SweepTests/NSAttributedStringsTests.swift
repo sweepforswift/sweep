@@ -27,13 +27,6 @@ class NSAttributedStringsTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
     func testChangedFont(){
         
         let intialString: String = "This is a testing string."
@@ -108,5 +101,58 @@ class NSAttributedStringsTests: XCTestCase {
             }
         }
     
+    }
+    
+    func testFontColorChangesOnRange(){
+        let intialString: String = "This is a testing string."
+        
+        let color: UIColor = UIColor.blue
+        
+        var testString: NSMutableAttributedString = NSMutableAttributedString(string: intialString)
+        
+        testString = testString.changeFontColor(color: color, range: NSMakeRange(3, 5))
+        
+        let attributes = testString.attributes(at: 3, longestEffectiveRange: nil, in: NSMakeRange(0, testString.length))
+        
+        print(attributes)
+        
+        XCTAssert(attributes["NSColor"] != nil)
+    }
+    
+    func testHighlightOnRange(){
+        let intialString: String = "This is a testing string."
+        
+        var testString: NSMutableAttributedString = NSMutableAttributedString(string: intialString)
+        
+        testString = testString.highlight(range: NSMakeRange(3, 5))
+        
+        let attributes = testString.attributes(at: 3, longestEffectiveRange: nil, in: NSMakeRange(0, testString.length))
+        
+        XCTAssert(attributes["NSBackgroundColor"] != nil)
+    }
+    
+    func testIsBoldOrItalicOnRange(){
+        let intialString: String = "This is a testing string."
+        
+        var testString: NSMutableAttributedString = NSMutableAttributedString(string: intialString)
+        
+        testString = testString.addConstraints(style: .italic, fontSize: 15, range: NSMakeRange(3, 5))
+        
+        let attributes = testString.attributes(at: 3, longestEffectiveRange: nil, in: NSMakeRange(0, testString.length))
+        
+        let font = ((((attributes[intialString]! as? Dictionary<String, Any>)?["NSFont"]!)!) as? UIFont)
+        
+        let descriptor = font?.fontDescriptor
+        let symTraits = descriptor?.symbolicTraits
+        
+        if let trait = symTraits?.contains(.traitBold){
+            if trait{
+                XCTAssert(trait)
+            }
+        }else if let trait = symTraits?.contains(.traitItalic){
+            if trait{
+                XCTAssert(trait)
+            }
+        }
     }
 }
