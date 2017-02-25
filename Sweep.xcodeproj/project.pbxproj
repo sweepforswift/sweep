@@ -10,6 +10,8 @@
 		4C48DD3C1E61373600CD4DFE /* Sweep.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C48DD321E61373600CD4DFE /* Sweep.framework */; };
 		4C48DD501E6137A000CD4DFE /* Sweep.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C48DD4E1E6137A000CD4DFE /* Sweep.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C71F0271E61388C0049858B /* SweepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48DD531E6137A800CD4DFE /* SweepTests.swift */; };
+		4C71F0431E6149470049858B /* JSONParserTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71F0421E6149470049858B /* JSONParserTest.swift */; };
+		4C71F0451E6149570049858B /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71F0441E6149570049858B /* JSONParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		4C48DD4E1E6137A000CD4DFE /* Sweep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sweep.h; sourceTree = "<group>"; };
 		4C48DD521E6137A800CD4DFE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C48DD531E6137A800CD4DFE /* SweepTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SweepTests.swift; sourceTree = "<group>"; };
+		4C71F0421E6149470049858B /* JSONParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParserTest.swift; sourceTree = "<group>"; };
+		4C71F0441E6149570049858B /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 			children = (
 				4C48DD4D1E6137A000CD4DFE /* Info.plist */,
 				4C48DD4E1E6137A000CD4DFE /* Sweep.h */,
+				4C71F0441E6149570049858B /* JSONParser.swift */,
 			);
 			path = Sweep;
 			sourceTree = "<group>";
@@ -82,6 +87,7 @@
 			children = (
 				4C48DD521E6137A800CD4DFE /* Info.plist */,
 				4C48DD531E6137A800CD4DFE /* SweepTests.swift */,
+				4C71F0421E6149470049858B /* JSONParserTest.swift */,
 			);
 			path = SweepTests;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 				TargetAttributes = {
 					4C48DD311E61373600CD4DFE = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					4C48DD3A1E61373600CD4DFE = {
@@ -196,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C71F0451E6149570049858B /* JSONParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C71F0431E6149470049858B /* JSONParserTest.swift in Sources */,
 				4C71F0271E61388C0049858B /* SweepTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,6 +329,7 @@
 		4C48DD471E61373600CD4DFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -331,6 +341,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.msmith.Sweep;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -338,6 +349,7 @@
 		4C48DD481E61373600CD4DFE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -356,6 +368,7 @@
 		4C48DD4A1E61373600CD4DFE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SweepTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msmith.SweepTests;
@@ -367,6 +380,7 @@
 		4C48DD4B1E61373600CD4DFE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = SweepTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msmith.SweepTests;
