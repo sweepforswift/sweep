@@ -51,7 +51,6 @@ public class JSONParser{
         let json = try? JSONSerialization.jsonObject(with: data!, options: [])
         
         guard let result = json as? T else{
-            print("It failed")
             return nil
         }
         return result
@@ -62,12 +61,10 @@ public class JSONParser{
         let json = try? JSONSerialization.jsonObject(with: data!, options: [])
         
         if let result = json as? [String:Any]{
-            
             return [T(json: result)]
         }
         
         if let result = json as? [[String:Any]]{
-            print("In second thing")
             var data: [T] = []
             for object in result{
                 data.append(T(json: object))
