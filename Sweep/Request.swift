@@ -9,8 +9,14 @@
 import UIKit
 import Foundation
 
+
+/**
+    Class to run a URL session and return back either JSON or HTTP status codes
+    - init: a request of type URLRequest already with proper HTML method set and method body of needed
+ */
 class Request {
     var request:URLRequest?
+    
     
     init(request:URLRequest?) {
         print("Request -> init")
@@ -20,6 +26,13 @@ class Request {
             return
         }
     }
+    
+    /**
+     Runs prebuilt requests of type URLRequest
+     - parameters: none
+     - return: If the request was successful: Closure with types Data?, URLResponse?, Error? else nil
+ 
+     */
     
     public func runRequest(completion:@escaping(Data?, URLResponse?, Error?) -> Void){
         
@@ -40,6 +53,12 @@ class Request {
             completion(data, response, err)
         }.resume()
     }
+    
+    /**
+     This function will call the runRequest function to run the session request will work with the closure returned by it. It will check HTTP response code and if correct will parse the data into JSON and return it.
+     - parameter: none
+     - return: completion of types URLReponse?, Error?, Status enum
+    */
     
     public func toJSON(completion:@escaping(Any?,Error?, Status) -> Void){
         runRequest(){
@@ -67,6 +86,13 @@ class Request {
             }
         }
     }
+    
+    /**
+     This function will call the runRequest function to run the session request will work with the closure returned by it. Casts the response as a HTTPUrlResponse and returns a closure
+     - parameters: none
+     - return: completion of types HTTPUrlResponse?, Error?, Status enum
+ 
+    */
     
     public func toHTTPStatus(completion:@escaping(HTTPURLResponse?,Error?, Status) -> Void){
         runRequest(){
