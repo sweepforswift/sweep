@@ -14,6 +14,14 @@ public enum Style{
 
 public extension NSMutableAttributedString {
     
+    
+    /**
+     Changes the font type of the NSMutableAttributedString to the font matching the parameter
+     
+     - parameter fontName: Takes in the name of the font that is desired
+     
+     - returns: an NSMutableAttributedString with the font applied
+     */
     public func changeFontType(fontName: String)->NSMutableAttributedString{
         
         let fonts: [String] = UIFont.familyNames
@@ -30,6 +38,15 @@ public extension NSMutableAttributedString {
         return self
     }
     
+    /**
+     Changes the font color of the NSMutableAttributedString to the color matching the parameter color. This function also has the option to select only a subset of the original NSMutableAttributedString to change the font color of.
+     
+     - parameter fontName: Takes in the String name of the font that is desired
+     
+     - parameter range: Takes in an NSRange? object that specifies the range on which the color will be applied. This will apply to the entire NSMutableAttributedString if no NSrange? is specified
+     
+     - returns: an NSMutableAttributedString with the font color applied
+     */
     public func changeFontColor(color: UIColor, range: NSRange? = nil)->NSMutableAttributedString{
         
         
@@ -46,7 +63,13 @@ public extension NSMutableAttributedString {
         return attributedString
     }
     
-    
+    /**
+     Changes the NSBackgroundColorAttributeName of the NSMutableAttributedString to the color yellow (i.e highlighting). This function has the optionional parameter called range that takes in an NSRange? to select only a subset of the original NSMutableAttributedString to highlight.
+     
+     - parameter range: Takes in an NSRange? object that specifies the range on which the highlighting will be applied. This will apply to the entire NSMutableAttributedString if no NSrange? is specified
+     
+     - returns: an NSMutableAttributedString with the highlighting applied
+     */
     public func highlight(range: NSRange? = nil)->NSMutableAttributedString{
         
         let attributedString = NSMutableAttributedString(string: self.string)
@@ -63,6 +86,17 @@ public extension NSMutableAttributedString {
         return attributedString
     }
 
+    /**
+     Adding a constraint of bold or italic to an NSMutableAttributedString based on the style parameter. This function also takes in an Int for size and an optional NSRange? to change a subset of the original NSMutableAttributedString.
+     
+     - parameter style: enum of type Style
+     
+     - parameter fontSize: Int that specifies the desired system size of the font
+     
+     - parameter range: Takes in an NSRange? object that specifies the range on which the color will be applied. This will apply to the entire NSMutableAttributedString if no NSrange? is specified
+     
+     - returns: an NSMutableAttributedString with the font style applied
+     */
     public func addConstraints(style: Style, fontSize: Int = 17, range: NSRange? = nil)->NSMutableAttributedString{
         
         var trueRange: NSRange
@@ -72,7 +106,6 @@ public extension NSMutableAttributedString {
             trueRange = NSMakeRange(0, self.length)
         }
         
-    
         switch style {
         case .bold:
             let myAttribute = [ NSFontAttributeName: UIFont.boldSystemFont(ofSize: CGFloat(fontSize)) ]
