@@ -23,15 +23,15 @@ class Request {
     
     public func runRequest(completion:@escaping(Data?, URLResponse?, Error?) -> Void){
         
-//        guard let request = request else{
-//            print("Request was nil")
-//            return
-//        }
+        guard let request = request else{
+            print("Request was nil")
+            return
+        }
         
         let session = URLSession.shared
         
         print("About the run the request")
-        session.dataTask(with: request!){
+        session.dataTask(with: request){
             (data, response, err) in
             print("Running the request")
             print("Session data: \(data)")
@@ -39,9 +39,6 @@ class Request {
             print("Session err: \(err)")
             completion(data, response, err)
         }.resume()
-        
-        
-        
     }
     
     public func toJSON(completion:@escaping(Any?,Error?, Status) -> Void){
@@ -54,6 +51,14 @@ class Request {
                 return
             }
             
+            if let response = response as! HTTPURLResponse?{
+                if(response.statusCode == 404){
+                    completion(response, err, Status.badRequest)
+                    return
+                }
+            }
+            
+            
             
             
             
@@ -64,7 +69,6 @@ class Request {
                 print("couldnt parse JSON!")
                 completion(nil, err, Status.parsingFailure)
             }
-        
         }
     }
     
@@ -78,5 +82,4 @@ class Request {
             }
         }
     }
-
 }

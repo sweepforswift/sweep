@@ -11,7 +11,6 @@ import Foundation
 public class WebRequests: NSObject{
     
     func getRequest(url:String) -> Request?{
-        print("Got into the function")
         guard let url = URL(string: url) else {
             print("Couldnt cast URL string")
             return nil
@@ -24,4 +23,20 @@ public class WebRequests: NSObject{
         
         return requestObject
     }
+    
+    func postRequest(url:String, postString:String) -> Request?{
+        guard let url = URL(string: url) else{
+            print("Couldnt cast URL string")
+            return nil
+        }
+        
+        var request = URLRequest(url:url)
+        request.httpMethod = "POST"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let requestObject = Request(request:request)
+        return requestObject
+        
+    }
+    
 }
