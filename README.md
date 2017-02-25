@@ -21,10 +21,10 @@ This application is under active development and will continue to be modified an
     - [ProgrammaticUI-Constraints](#programmatic-ui-constraints)
         -METHODS GO HERE
     - [NSMutableAttributedStrings](#nsmutableattributedstrings)
-        - [Change Font Type](change-font-type)
-        - [Change Font Color](change-font-color)
-        - [Highlight Text](highlight-text)
-        - [Add Constraints](add-constraints)
+        - [Change Font Type](#change-font-type)
+        - [Change Font Color](#change-font-color)
+        - [Highlight Text](#highlight-text)
+        - [Add Constraints](#add-constraints)
 - [Credits](#credits)
 - [License](#license)
 
