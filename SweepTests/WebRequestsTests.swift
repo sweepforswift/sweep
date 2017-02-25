@@ -77,7 +77,7 @@ class WebRequestsTests: XCTestCase {
     func testGetCodeRequest(){
         let expectation = self.expectation(description: "async")
         webRequests.getRequest(url: "http://reikerseiffe.com/status")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response?.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -91,7 +91,7 @@ class WebRequestsTests: XCTestCase {
     func testGetCodeRequestBadURL(){
         let expectation = self.expectation(description: "async")
         webRequests.getRequest(url: "http://reikerseiffe.com/statu")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response?.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -143,7 +143,7 @@ class WebRequestsTests: XCTestCase {
     func testPostCodeRequest(){
         let expectation = self.expectation(description: "async")
         webRequests.postRequest(url: "http://reikerseiffe.com/status", postString: "name=Reiker")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response?.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -157,7 +157,7 @@ class WebRequestsTests: XCTestCase {
     func testPostCodeRequestBadURL(){
         let expectation = self.expectation(description: "async")
         webRequests.postRequest(url: "http://reikerseiffe.com/statu", postString: "name=reiker")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response?.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -194,7 +194,7 @@ class WebRequestsTests: XCTestCase {
     func testDeleteCodeRequestBadURL(){
         let expectation = self.expectation(description: "async")
         webRequests.deleteRequest(url: "http://reikerseiffe.com/usr/123")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response!.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -209,7 +209,7 @@ class WebRequestsTests: XCTestCase {
         
         let expectation = self.expectation(description: "async")
         webRequests.deleteRequest(url: "http://reikerseiffe.com/user/1")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response!.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -225,7 +225,7 @@ class WebRequestsTests: XCTestCase {
     func testDeleteCodeRequest(){
         let expectation = self.expectation(description: "async")
         webRequests.deleteRequest(url: "http://reikerseiffe.com/user/123")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response?.statusCode)")
             print("error \(err)")
             expectation.fulfill()
@@ -248,7 +248,7 @@ class WebRequestsTests: XCTestCase {
     func testPutCodeRequest(){
         let expectation = self.expectation(description: "async")
         webRequests.putRequest(url: "http://reikerseiffe.com/user/123/order/55")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response!.statusCode)")
             print("error \(err)")
             XCTAssertEqual(response!.statusCode, 200)
@@ -262,7 +262,7 @@ class WebRequestsTests: XCTestCase {
     func testPutCodeRequestBadUrl(){
         let expectation = self.expectation(description: "async")
         webRequests.putRequest(url: "http://reikerseiffe.com/user/123/orde/55")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response!.statusCode)")
             print("error \(err)")
             XCTAssertEqual(response!.statusCode, 404)
@@ -276,19 +276,18 @@ class WebRequestsTests: XCTestCase {
     func testPutCodeRequestbadUrl2(){
         let expectation = self.expectation(description: "async")
         webRequests.putRequest(url: "http://reikerseiffe.com/usr/123/order/55")?.toHTTPStatus{
-            (response:HTTPURLResponse?, err:Error?) in
+            (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response!.statusCode)")
             print("error \(err)")
             
             XCTAssertEqual(response!.statusCode, 404)
             
             expectation.fulfill()
-            
-            
         }
         
         self.waitForExpectations(timeout: 10.0, handler: nil)
     }
+
 
     
     

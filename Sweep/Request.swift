@@ -68,13 +68,14 @@ class Request {
         }
     }
     
-    public func toHTTPStatus(completion:@escaping(HTTPURLResponse?,Error?) -> Void){
+    public func toHTTPStatus(completion:@escaping(HTTPURLResponse?,Error?, Status) -> Void){
         runRequest(){
             (data:Data?,response:URLResponse?, err:Error?) in
             if let code = response! as? HTTPURLResponse{
-                completion(code, err)
+                completion(code, err, Status.success)
             }else{
                 print("couldnt parse HTTP Status Code!")
+                completion(nil, err, Status.parsingFailure)
             }
         }
     }
