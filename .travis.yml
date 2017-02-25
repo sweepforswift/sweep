@@ -6,4 +6,4 @@ branches:
   - develop
 
 script:
-  - xcodebuild clean build -sdk iphonesimulator -project Sweep.xcodeproj -scheme SweepTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' CODE_SIGNING_REQUIRED=NO test
+  - xcodebuild clean build -sdk iphonesimulator -project Sweep.xcodeproj -scheme SweepTests -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2' CODE_SIGNING_REQUIRED=NO test
