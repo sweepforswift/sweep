@@ -48,3 +48,17 @@ public extension Sequence where Iterator.Element: Averagable {
         return 0.0
     }
 }
+
+public extension Sequence {
+ /*
+    func take(index: Int) -> [Iterator.Element]
+    {
+        if((index > self.underestimatedCount) && self.underestimatedCount == 0)
+        {
+            return []
+        }
+        self.split(whereSeparator: <#T##(Self.Iterator.Element) throws -> Bool#>)
+        return self as! [Self.Iterator.Element]
+    }
+ */
+}
