@@ -6,4 +6,4 @@ branches:
   - develop
 
 script:
-  - xcodebuild clean build -sdk iphonesimulator -project Sweep.xcodeproj -scheme SweepTests CODE_SIGNING_REQUIRED=NO
+  - xcodebuild clean build -sdk iphonesimulator -project Sweep.xcodeproj -scheme SweepTests CODE_SIGNING_REQUIRED=NO test
