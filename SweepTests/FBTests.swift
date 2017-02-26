@@ -38,10 +38,6 @@ class FBTests: XCTestCase {
         ref.getDataAtPath(path: "users"){ snapshot in
             
             expectation.fulfill()
-        
-            let array = snapshot.value as? [String: Any]
-            
-            //print(array)
             
         }
         
@@ -62,10 +58,6 @@ class FBTests: XCTestCase {
             
             expectation.fulfill()
             
-            let array = snapshot.value as? [String: Any]
-            
-            //print(array)
-            
         }
         
         self.waitForExpectations(timeout: 10.0, handler: nil)
@@ -84,10 +76,6 @@ class FBTests: XCTestCase {
         ref.getDataAtPath(path: "/users/alovelace/"){ snapshot in
             
             expectation.fulfill()
-            
-            let array = snapshot.value as? [String: Any]
-            
-            //print(array)
             
         }
         
