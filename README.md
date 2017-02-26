@@ -11,7 +11,7 @@ This application is under active development and will continue to be modified an
 - [Features](#usage)
 - [Usage](#usage)
     - [Arrays](#arrays)
-        -METHODS GO HERE
+        - [Average](#average)
     - [SafeArrays](#safearrays)
         -METHODS GO HERE
     - [JSON-Parser](#json-parser)
@@ -45,6 +45,8 @@ Anyone is encouraged to contribute to the project by [forking](https://help.gith
 ## Usage
 
 ### Arrays
+
+####Average
 The `average` function takes in no parameters and returns an average of type `Double` on the arrays summation. This function works only on Ints, Doubles, and Floats. Also, catches the exception of an empty Array.
 ```swift
   let intArray: [Int] = [1,2,3,4,5]//sum = 15
