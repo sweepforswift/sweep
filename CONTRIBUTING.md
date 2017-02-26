@@ -31,7 +31,7 @@ Bugs include any problems in the `master` branch that produce unexpected behavio
 	* Target version of iOS
 	* Xcode versio
 
-#### Some tips to submitting a good bug report
+### Some tips to submitting a good bug report
 **Report the problem immediately**
 Don’t wait to write bug report late because you can miss the important details. If you found any defects while testing, report it immediately.
 
