@@ -45,7 +45,18 @@ Anyone is encouraged to contribute to the project by [forking](https://help.gith
 ## Usage
 
 ### Arrays
-
+The `average` function takes in no parameters and returns an average of type `Double` on the arrays summation. This function works only on Ints, Doubles, and Floats. Also, catches the exception of an empty Array.
+```swift
+  let intArray: [Int] = [1,2,3,4,5]//sum = 15
+  let floatArray: [Float] = [1.25,2.5,3.75]//sum = 7.5
+  let doubleArray: [Double] = [5.0, 0.6,4.2, 0.2, 2.5]//sum = 12.5
+  let emptyArray = Array<Int>()// sum = 0
+  //Getting Averages on all Sequences that have the Avergable protocol.
+  let intAverage = intArray.average() //intAverage = 3.0
+  let floatAverage = floatArray.average() //floatAverage = 2.5
+  let doubleAverage = doubleArray.average() //doubleAverage = 2.5
+  let emptyAverage = emptyArray.average() // average = 0.0
+```
 ### SafeArrays
 
 ### JSON Parser
