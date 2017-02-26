@@ -1,4 +1,5 @@
 # Sweep for Swift
+[![Build Status](https://travis-ci.org/msmith95/sweep.svg?branch=develop)](https://travis-ci.org/msmith95/sweep)
 
 Swift extension library used to simplify several common tasks that are used in most iOS applications today.
 
