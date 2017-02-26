@@ -23,6 +23,11 @@ public extension Sequence where Iterator.Element: Averagable {
         return reduce(0, +)
     }
     
+    /**
+     The average function takes in no parameters and returns an average of type Double on the arrays summation. This function works only on Ints, Doubles, and Floats. Also, catches the exception of an empty Array.
+    - parameter none
+     - returns: Double
+    */
     func average() -> Double
     {
         if(self.underestimatedCount == 0)

@@ -30,11 +30,7 @@ class ArraysTest: XCTestCase {
         let stringArray: [String] = ["a","b","c"]
         let emptyStringArray: [String] = []
          */
-        let intArray: [Int] = [1,2,3,4,5] //15 avg = 3
-        let floatArray: [Float] = [1.25,2.5,3.75] //7.5 avg = 2.5
-        let doubleArray: [Double] = [5.0, 0.6,4.2, 0.2, 2.5] // 12.5 avg = 2.5
-        let emptyArray = Array<Int>() //0 avg = 0.0
-        //Function calls
+                //Function calls
         //Contruction of Take
         //------------------------------------------------------------------
        /* let stringTake3 = stringArray.take(index: 3)
@@ -44,10 +40,16 @@ class ArraysTest: XCTestCase {
         let emptyTake2 = emptyStringArray.take(index: 0)//Taking from nothing */
         //Construction of Average
         //-----------------------------------------------------------------
-        let intAverage = intArray.average()
-        let floatAverage = floatArray.average()
-        let doubleAverage = doubleArray.average()
-        let emptyAverage = emptyArray.average()
+        
+        let intArray: [Int] = [1,2,3,4,5]//sum = 15
+        let floatArray: [Float] = [1.25,2.5,3.75]//sum = 7.5
+        let doubleArray: [Double] = [5.0, 0.6,4.2, 0.2, 2.5]//sum = 12.5
+        let emptyArray = Array<Int>()// sum = 0
+        //Getting Averages on all Sequences that have the Avergable protocol.
+        let intAverage = intArray.average() //intAverage = 3.0
+        let floatAverage = floatArray.average() //floatAverage = 2.5
+        let doubleAverage = doubleArray.average() //doubleAverage = 2.5
+        let emptyAverage = emptyArray.average() // average = 0.0
         //Testing Prints
         //------------------------------------------------------------------
         //Use of Take
