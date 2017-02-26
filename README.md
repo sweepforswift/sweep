@@ -1,3 +1,6 @@
+[logo]: https://s21.postimg.org/4lujul6pj/Sweep.png "SWEEP"
+![alt text](https://s21.postimg.org/4lujul6pj/Sweep.png "SWEEP")
+
 # Sweep for Swift
 
 Swift extension library used to simplify several common tasks that are used in most iOS applications today.
