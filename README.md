@@ -8,12 +8,11 @@ This application is under active development and will continue to be modified an
 
 - [Goals](#goals)
 - [Contribution Guide](#contributing)
+- [Installation](#installation)
 - [Features](#usage)
 - [Usage](#usage)
     - [Arrays](#arrays)
         - [Average](#average)
-    - [SafeArrays](#safearrays)
-        -METHODS GO HERE
     - [JSON-Parser](#json-parser)
         - [Parse For Strings](#parse-for-strings)
         - [Parse For Data](#parse-for-data)
@@ -26,8 +25,6 @@ This application is under active development and will continue to be modified an
         - [Running the Request](#running-request)
         	- [To Json](#toJson)
         	- [To HTTP Status Code](#http-status)
-    - [ProgrammaticUI-Constraints](#programmatic-ui-constraints)
-        -METHODS GO HERE
     - [NSMutableAttributedStrings](#nsmutableattributedstrings)
         - [Change Font Type](#change-font-type)
         - [Change Font Color](#change-font-color)
@@ -46,9 +43,14 @@ We hope to see this library grow and develop in the open source community and in
 
 Anyone is encouraged to contribute to the project by [forking](https://help.github.com/articles/fork-a-repo) and submitting a pull request. (If you are new to GitHub, you might start with a [basic tutorial](https://help.github.com/articles/set-up-git).)
 
+Please read our [contributing](https://github.com/msmith95/sweep/blob/master/CONTRIBUTING.md) guide before making any pull requests.
+
+## Installation
+Download the latest verion of our library from the [releases](https://github.com/msmith95/sweep/releases) section. There will be two options, one marked as sweep-base, the other as sweep-firebase. Sweep-base includes just the base library while sweep-firebase includes the base library as well as the Firebase integration. Only use the Firebase one if you plan on integrating Firebase into your application.
+
+If you would like to build our library from scratch, clone this project and build it using Xcode. You may also optionally run the testing scheme to see the results of the unit tests.
+
 ## Usage
-
-
 
 ### Arrays
 
@@ -65,7 +67,6 @@ The `average` function takes in no parameters and returns an average of type `Do
   let doubleAverage = doubleArray.average() //doubleAverage = 2.5
   let emptyAverage = emptyArray.average() // average = 0.0
 ```
-### SafeArrays
 
 ### JSON Parser
 
@@ -253,8 +254,6 @@ Currently the toJSON will reurn and `Any?` object that can then be parsed using 
         print("error \(err)")
     }
 ```
-
-### Programmatic UI Constraints
 
 ### NSMutableAttributedStrings
 
