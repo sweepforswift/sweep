@@ -142,7 +142,7 @@ class WebRequestsTests: XCTestCase {
     
     func testPostCodeRequest(){
         let expectation = self.expectation(description: "async")
-        webRequests.postRequest(url: "http://reikerseiffe.com/status", postString: "name=Reiker")?.toHTTPStatus{
+        webRequests.postRequest(url: "http://reikerseiffe.com/status", postString: "name=Reiker&password=test")?.toHTTPStatus{
             (response:HTTPURLResponse?, err:Error?, status:Status) in
             print("response \(response?.statusCode)")
             print("error \(err)")

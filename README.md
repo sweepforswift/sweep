@@ -24,7 +24,11 @@ This application is under active development and will continue to be modified an
         - [JSONAble Protocol](#jsonable-protocol)
         - [To JSON](#to-json)
     - [Web-Requests](#web-requests)
-        -METHODS GO HERE
+        - [Get and Delete requests](#get-delete)
+        - [Post and Put requests](#post-put)
+        - [Running the Request](#running-request)
+        	- [To Json](#toJson)
+        	- [To HTTP Status Code](#http-status)
     - [ProgrammaticUI-Constraints](#programmatic-ui-constraints)
         -METHODS GO HERE
     - [NSMutableAttributedStrings](#nsmutableattributedstrings)
@@ -170,6 +174,89 @@ if let object = object{
 
 ### Web Requests
 
+The `WebRequests` class allows for easier web requests by turning common HTTP methods into functions runable on the class. All functions on this class will take in either just a URL or both a URL and POST data. Each function will return an instance of the `Request` class. Because of this it is possible to chain `WebRequests` functions with functions on the `Request` object (example in the Running the Request section below).
+
+The `Request` class has 3 functions on it, the first being `runRequest` which will use the `request:URLRequest?` variable to run a session and return a closure of type `Data?`, `URLResponse?`, and `Error?`. The other two functions are explained below.
+
+
+#### Get and Delete Requests
+
+##### Get Requests
+The `getRequest` function will take in a URL that is passed in as a `String`. This will return an instantiated object of type `Request` that has the URL set and the `.httpMethod` set to "GET". If the url could not be formed to type `URL` than nil will be returned.
+
+```swift
+	let getRequest = webRequests.getRequest(url: "http://example.com/API/test")
+
+	guard let request = getRequest else{
+		print("request was nil")
+		return
+	}
+	//run code....
+```
+
+##### Get Requests
+The `deleteRequest` function is very similar to the get request and will also take in a URL that is passed in as a `String`. This will return an instantiated object of type `Request` that has the URL set and the `.httpMethod` set to "DELETE". If the url could not be formed to type `URL` than nil will be returned.
+
+```swift
+	let deleteRequest = webRequests.deleteRequest(url: "http://example.com/API/user/1")
+
+	guard let request = deleteRequest else{
+		print("request was nil")
+		return
+	}
+	//run code....
+```
+
+#### Post and Put Requests
+##### Post Requests
+The `postRequest` function takes in a URL that is passed in as a `String` and a string of data to pass through in the method body. This will return an instantiated object of type `Request` that has the URL set and the `.httpMethod` set to "POST" and the `.HTTPBody` set to the post string. If the url could not be formed to type `URL` than nil will be returned.
+
+```swift
+	let postRequest = webRequests.postRequest(url: "http://example.com/API/login", postString: "username=user&password=test")
+
+	guard let request = postRequest else{
+		print("request was nil")
+		return
+	}
+	//run code....
+```
+
+##### Put Requests
+The `putRequest` function is similar to the post request and takes in a URL that is passed in as a `String` and a string of data to pass through in the method body. This will return an instantiated object of type `Request` that has the URL set and the `.httpMethod` set to "PUT" and the `.HTTPBody` set to the post string. If the url could not be formed to type `URL` than nil will be returned.
+
+```swift
+	let putRequest = webRequests.putRequest(url: "http://example.com/API/user/1", putString: "username=user2")
+
+	guard let request = putRequest else{
+		print("request was nil")
+		return
+	}
+	//run code....
+```
+
+#### Running the request
+When creating web requests with the `WebRequests` class, `WebRequests` will return a `Request` object with the method to run the session and a `JSON` and HTTP code parser. This allows the methods just to be called on the object returned or the ability to chain multiple methods together such as a get request and the parsing it as `JSON`. These functions will recieve a closure with the data needed.
+Example:
+
+```swift
+	webRequests.getRequest(url: "http://example.com/users")?.toJSON{
+			(response:Any?, err:Error?, status: Status) in
+        print("response \(response)")
+        print("error \(err)")
+        print("Status \(status)")
+  }
+```
+
+Currently the toJSON will reurn and `Any?` object that can then be parsed using the JSONable extention included in the library. This is planned to be made default in the future. `HTTP status codes` can also be obtained by this class by calling `toHTTPStatus`. This function will also recieve a closure with the data needed, simply call .statusCode on the response to obtain the code..
+
+```swift
+    webRequests.getRequest(url: "http://example.com/users")?.toHTTPStatus{
+        (response:HTTPURLResponse?, err:Error?, status:Status) in
+        print("response \(response?.statusCode)")
+        print("error \(err)")
+    }
+```
+
 ### Programmatic UI Constraints
 
 ### NSMutableAttributedStrings
@@ -243,6 +330,10 @@ testString = testString.addConstraints(style: .italic, fontSize: 15, range: NSMa
 ```
 `testString` will now hold the updated `NSMutableAttributedString` font returned by `testString.addConstraints(style: .italic, fontSize: 15, range: NSMakeRange(3, 5))`
 ## Credits
+
+####Icon
+Icon from www.flaticon.com 
+E.g.: Icon made by Freepik from www.flaticon.com
 
 ## License
 The Sweep library is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
