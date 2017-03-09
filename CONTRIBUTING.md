@@ -29,7 +29,7 @@ Bugs include any problems in the `master` branch that produce unexpected behavio
 * Please include the following in all bug reports:
 	* Version of the library
 	* Target version of iOS
-	* Xcode versio
+	* Xcode version
 
 ### Some tips to submitting a good bug report
 **Report the problem immediately**
