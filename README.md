@@ -24,7 +24,7 @@ We hope to see this library grow and develop in the open source community and in
 
 Anyone is encouraged to contribute to the project by [forking](https://help.github.com/articles/fork-a-repo) and submitting a pull request. (If you are new to GitHub, you might start with a [basic tutorial](https://help.github.com/articles/set-up-git).)
 
-Please read our [contributing](https://github.com/sweepforswift/sweep/blob/master/CONTRIBUTING.md) guide before making any pull requests. Please also read our [style](https://github.com/sweepforswift/sweep/blog/master/Styleguide.md) guide before making pull requests to make sure your code follows our standard.
+Please read our [contributing](https://github.com/sweepforswift/sweep/blob/master/CONTRIBUTING.md) guide before making any pull requests. Please also read our [style](https://github.com/sweepforswift/sweep/blog/master/Styleguide.md) guide before making pull requests to make sure your code follows our standards.
 
 ## Installation
 Download the latest verion of our library from the [releases](https://github.com/sweepforswift/sweep/releases) section. This will give you the prebuilt framework that can be added to the project directly.
