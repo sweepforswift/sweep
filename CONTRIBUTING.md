@@ -58,7 +58,7 @@ Before submitting a new feature request, please do a quick search on the issue b
 All contributors will be listed in the [contributors](https://github.com/msmith95/sweep/blob/master/CONTRIBUTORS.md) document within this repository.
 
 ## Where can I ask for help?
-Feel free to reach out to us via email and we will get back to you as soon as possible. You may also raise a general issue on the issue board and we will get back to you as soon as possible.
+Feel free to reach out to us via email [developers@sweepforswift.io](mailto:developers@sweepforswift.io) and we will get back to you as soon as possible. You may also raise a general issue on the issue board and we will get back to you as soon as possible.
 
 ## Special Thanks
 
