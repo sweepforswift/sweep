@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-public class CoreDataORM{
-    static var managedContext: NSManagedObjectContext?
+public class CoreDataORM: ConnectionProtocol{
+    public static var managedContext: NSManagedObjectContext?
     
-    static func all(model: String) -> NSFetchRequest<NSFetchRequestResult>{
+    public static func all(model: String) -> Any{
         // Initialize Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
@@ -34,7 +34,7 @@ public class CoreDataORM{
 //        return nil
     }
     
-    static func find(model:String) -> NSFetchRequest<NSFetchRequestResult>{
-        return self.all(model: model)
+    public static func find(model:String, byId: Any) -> NSFetchRequest<NSFetchRequestResult>{
+        return self.all(model: model) as! NSFetchRequest<NSFetchRequestResult>
     }
 }

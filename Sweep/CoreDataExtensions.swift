@@ -13,29 +13,35 @@ public protocol CoreDataDatabase: Database{}
 
 extension NSManagedObject: Database {
     
-    private var model: String{
+    public class var model: String{
         get{
             return String(describing: type(of: self))
         }
     }
     
-    public func all() -> QueryBuilder {
+    public static func all() -> QueryBuilder {
         return QueryBuilder(model: self.model).all()
     }
     
-    public func find<T>(id: Any) -> T? {
+    public static func find<T>(id: Any) -> T? {
         return QueryBuilder(model: self.model).find(id: id)
     }
     
-    public func find(where: String, op: String, comparedTo: Any) -> QueryBuilder {
+    public static func find(where: String, op: String, comparedTo: Any) -> QueryBuilder {
         return QueryBuilder(model: self.model).find(where: `where`, op: op, comparedTo: comparedTo)
     }
     
-    public func orderBy(prop: String, order:OrderBy) -> QueryBuilder {
+    public static func orderBy(prop: String, order:OrderBy) -> QueryBuilder {
         return QueryBuilder(model: self.model).orderBy(prop: prop, order: order)
     }
     
     public func save() -> Bool {
+        do {
+            try CoreDataORM.managedContext?.save()
+        } catch {
+            print("It crashed")
+            return false
+        }
         return true
     }
 

@@ -13,12 +13,15 @@ public enum OrderBy{
     case DESC
 }
 
-public protocol Database{
-    func all() -> QueryBuilder
-    func find<T>(id: Any) -> T?
-    func find(where: String, op: String, comparedTo: Any) -> QueryBuilder
+public protocol Database: class{
+    static func all() -> QueryBuilder
+    static func find<T>(id: Any) -> T?
+    static func find(where: String, op: String, comparedTo: Any) -> QueryBuilder
     //func find(orWhere: String, op: String, comparedTo: Any) -> QueryBuilder
     //func find(andWhere: String, op: String, comparedTo: Any) -> QueryBuilder
-    func orderBy(prop: String, order:OrderBy) -> QueryBuilder
+    static func orderBy(prop: String, order:OrderBy) -> QueryBuilder
     func save() -> Bool
+    static var model: String {
+        get
+    }
 }

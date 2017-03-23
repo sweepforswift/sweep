@@ -16,19 +16,20 @@ public class QueryBuilder{
     private var fetchRequest: Any?
     private var fetchRequests: [Any] = []
     private var sort: [Any] = []
+    public static var connection: ConnectionProtocol.Type?
     
     init(model: String){
         self.model = model
     }
     
     public func all() -> QueryBuilder {
-        let fetchRequest = CoreDataORM.all(model: self.model)
+        let fetchRequest = QueryBuilder.connection?.all(model: self.model)
         self.fetchRequest = fetchRequest
         return self
     }
     
     public func find<T>(id: Any) -> T? {
-        let fetchRequest = CoreDataORM.find(model: model)
+        let fetchRequest = CoreDataORM.find(model: model, byId: id)
         self.fetchRequest = fetchRequest
         return self.first()
     }
@@ -86,8 +87,8 @@ public class QueryBuilder{
     
     public func get<T>() -> [T]?{
         do {
-            let result = try CoreDataORM.managedContext?.fetch(self.fetchRequest as! NSFetchRequest) as? [T]
-            return result
+            let result = try CoreDataORM.managedContext?.fetch(self.fetchRequest as! NSFetchRequest)
+            return result as! [T]?
             
         } catch {
             let fetchError = error as NSError
