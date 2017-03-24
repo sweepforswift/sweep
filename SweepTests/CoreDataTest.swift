@@ -84,6 +84,20 @@ class CoreDataTest: XCTestCase {
         XCTAssertEqual(recUsers?[0].name, "Bob")
     }
     
+    func testCanRetrieveModelWithFind(){
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: CoreDataORM.managedContext!)
+        let user = User(entity: entity!, insertInto: CoreDataORM.managedContext!)
+        user.name = "Bob"
+        _ = user.save()
+        
+        let user2 = User(entity: entity!, insertInto: CoreDataORM.managedContext!)
+        user2.name = "Jim"
+        _ = user2.save()
+        
+        let recUser: User? = User.find(key: "name", value: "Bob")
+        XCTAssertEqual(recUser?.name, "Bob")
+    }
+    
 }
 
 @objc(User)

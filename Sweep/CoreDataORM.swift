@@ -12,7 +12,16 @@ import CoreData
 public class CoreDataORM: ConnectionProtocol{
     public static var managedContext: NSManagedObjectContext?
     
-    public static func all(model: String) -> Any{
+    
+    public static func build() -> Self{
+        return self.init()
+    }
+    
+    required public init(){
+        
+    }
+    
+    public func all(model: String) -> Any{
         // Initialize Fetch Request
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
@@ -22,19 +31,33 @@ public class CoreDataORM: ConnectionProtocol{
         // Configure Fetch Request
         fetchRequest.entity = entityDescription
         return fetchRequest
-        
-//        do {
-//            let result = try CoreDataORM.managedContext?.fetch(fetchRequest) as? [T]
-//            return result
-//            
-//        } catch {
-//            let fetchError = error as NSError
-//            print(fetchError)
-//        }
-//        return nil
     }
     
-    public static func find(model:String, byId: Any) -> NSFetchRequest<NSFetchRequestResult>{
-        return self.all(model: model) as! NSFetchRequest<NSFetchRequestResult>
+    public func find<T>(model:String, byId: Any, forKey: String) -> T?{
+        let request = self.all(model: model) as! NSFetchRequest<NSFetchRequestResult>
+        request.predicate = buildSinglePredicate(field: forKey, value: byId)
+        return self.performSelect(request: request)?.first
+    }
+    
+    private func buildSinglePredicate(field: String, value:Any) -> NSPredicate{
+        let predicate = self.buildWhereClause(key: field, op: "==", comparedTo: value) as! NSPredicate
+        return predicate
+    }
+    
+    public func performSelect<T>(request: Any) -> [T]?{
+        do {
+            let result = try CoreDataORM.managedContext?.fetch(request as! NSFetchRequest)
+            return result as! [T]?
+            
+        } catch {
+            let fetchError = error as NSError
+            print(fetchError)
+        }
+        return nil
+    }
+    
+    public func buildWhereClause(key: String, op: String, comparedTo: Any) -> Any{
+        let predicate = NSPredicate(format: "\(key) \(op) %@", argumentArray: [comparedTo])
+        return predicate
     }
 }

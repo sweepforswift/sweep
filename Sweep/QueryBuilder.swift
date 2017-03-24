@@ -23,15 +23,16 @@ public class QueryBuilder{
     }
     
     public func all() -> QueryBuilder {
-        let fetchRequest = QueryBuilder.connection?.all(model: self.model)
+        let databaseConnector = QueryBuilder.connection?.build()
+        let fetchRequest = databaseConnector?.all(model: self.model)
         self.fetchRequest = fetchRequest
         return self
     }
     
-    public func find<T>(id: Any) -> T? {
-        let fetchRequest = CoreDataORM.find(model: model, byId: id)
-        self.fetchRequest = fetchRequest
-        return self.first()
+    public func find<T>(key: String, value: Any) -> T? {
+        let databaseConnector = QueryBuilder.connection?.build()
+        let result: T? = databaseConnector?.find(model: self.model, byId: value, forKey: key)
+        return result
     }
     
     public func find(where: String, op: String, comparedTo: Any) -> QueryBuilder {

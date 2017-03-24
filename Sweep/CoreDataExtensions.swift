@@ -23,8 +23,9 @@ extension NSManagedObject: Database {
         return QueryBuilder(model: self.model).all()
     }
     
-    public static func find<T>(id: Any) -> T? {
-        return QueryBuilder(model: self.model).find(id: id)
+    public static func find<T>(key: String, value: Any) -> T? {
+        let result: T? = QueryBuilder(model: self.model).find(key: key, value: value)
+        return result
     }
     
     public static func find(where: String, op: String, comparedTo: Any) -> QueryBuilder {

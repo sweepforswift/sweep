@@ -15,7 +15,7 @@ public enum OrderBy{
 
 public protocol Database: class{
     static func all() -> QueryBuilder
-    static func find<T>(id: Any) -> T?
+    static func find<T>(key: String, value: Any) -> T?
     static func find(where: String, op: String, comparedTo: Any) -> QueryBuilder
     //func find(orWhere: String, op: String, comparedTo: Any) -> QueryBuilder
     //func find(andWhere: String, op: String, comparedTo: Any) -> QueryBuilder
