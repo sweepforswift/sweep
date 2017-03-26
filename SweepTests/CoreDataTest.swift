@@ -31,6 +31,13 @@ class CoreDataTest: XCTestCase {
         nameAttribute.isIndexed = true
         properties.append(nameAttribute)
         
+        let ageAttribute = NSAttributeDescription()
+        ageAttribute.name = "age"
+        ageAttribute.attributeType = .integer64AttributeType
+        ageAttribute.isOptional = false
+        ageAttribute.isIndexed = true
+        properties.append(ageAttribute)
+        
         // Add attributes to entity
         entity.properties = properties
         
@@ -74,28 +81,37 @@ class CoreDataTest: XCTestCase {
     }
     
     func testCanRetreiveModel(){
-        let entity = NSEntityDescription.entity(forEntityName: "User", in: CoreDataORM.managedContext!)
-        let user = User(entity: entity!, insertInto: CoreDataORM.managedContext!)
-        user.name = "Bob"
+        let user = userFactory(context: CoreDataORM.managedContext!)
         _ = user.save()
         
         let recUsers: [User]? = User.all().get()
         XCTAssertEqual(recUsers?.count, 1)
-        XCTAssertEqual(recUsers?[0].name, "Bob")
+        XCTAssertEqual(recUsers?[0].name, user.name)
     }
     
     func testCanRetrieveModelWithFind(){
-        let entity = NSEntityDescription.entity(forEntityName: "User", in: CoreDataORM.managedContext!)
-        let user = User(entity: entity!, insertInto: CoreDataORM.managedContext!)
-        user.name = "Bob"
+        let user = userFactory(context: CoreDataORM.managedContext!)
         _ = user.save()
         
-        let user2 = User(entity: entity!, insertInto: CoreDataORM.managedContext!)
-        user2.name = "Jim"
+        let user2 = userFactory(context: CoreDataORM.managedContext!)
         _ = user2.save()
         
-        let recUser: User? = User.find(key: "name", value: "Bob")
-        XCTAssertEqual(recUser?.name, "Bob")
+        let recUser: User? = User.find(key: "name", value: user.name)
+        XCTAssertEqual(recUser?.name, user.name)
+    }
+    
+    func testWhereClause(){
+        let user = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 25])
+        _ = user.save()
+        
+        let user2 = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 35])
+        _ = user2.save()
+        
+        let user3 = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 40])
+        _ = user3.save()
+        
+        let users: [User]? = User.all().find(where: "age", op: .greaterThan, comparedTo: 30).get()
+        XCTAssertEqual(users?.count, 2)
     }
     
 }
@@ -103,6 +119,7 @@ class CoreDataTest: XCTestCase {
 @objc(User)
 public class User: NSManagedObject{
     @NSManaged var name:String
+    @NSManaged var age:Int
     
     public class override var model: String{
         get{

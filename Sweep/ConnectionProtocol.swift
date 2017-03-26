@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol ConnectionProtocol: class{
-     func all(model: String) -> Any
+     func all(model: String)
     
     //func find<T>(id: Any) -> T?
 //    func find(where: String, op: String, comparedTo: Any) -> QueryBuilder
@@ -20,8 +20,8 @@ public protocol ConnectionProtocol: class{
 //    func get<T>() -> [T]?
 //    func first<T>() -> T?
      func find<T>(model:String, byId: Any, forKey: String) -> T?
-     func performSelect<T>(request: Any) -> [T]?
-     func buildWhereClause(key: String, op: String, comparedTo: Any) -> Any
+     func performSelect<T>() -> [T]?
+     func buildWhereClause(key: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> Any
     static func build() -> Self
     
     init()

@@ -17,6 +17,7 @@ public class QueryBuilder{
     private var fetchRequests: [Any] = []
     private var sort: [Any] = []
     public static var connection: ConnectionProtocol.Type?
+    private var currentConnection: ConnectionProtocol?
     
     init(model: String){
         self.model = model
@@ -24,8 +25,9 @@ public class QueryBuilder{
     
     public func all() -> QueryBuilder {
         let databaseConnector = QueryBuilder.connection?.build()
-        let fetchRequest = databaseConnector?.all(model: self.model)
-        self.fetchRequest = fetchRequest
+        let _ = databaseConnector?.all(model: self.model)
+        //self.fetchRequest = fetchRequest
+        self.currentConnection = databaseConnector
         return self
     }
     
@@ -35,9 +37,8 @@ public class QueryBuilder{
         return result
     }
     
-    public func find(where: String, op: String, comparedTo: Any) -> QueryBuilder {
-        let fetchRequest = self.fetchRequest as? NSFetchRequest<NSFetchRequestResult>
-        fetchRequest?.predicate = NSPredicate(format: "\(`where`) \(op) %@", [comparedTo])
+    public func find(where: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> QueryBuilder {
+        let _ = self.currentConnection?.buildWhereClause(key: `where`, op: op, comparedTo: comparedTo)
         return self
     }
     
@@ -87,15 +88,7 @@ public class QueryBuilder{
     }
     
     public func get<T>() -> [T]?{
-        do {
-            let result = try CoreDataORM.managedContext?.fetch(self.fetchRequest as! NSFetchRequest)
-            return result as! [T]?
-            
-        } catch {
-            let fetchError = error as NSError
-            print(fetchError)
-        }
-        return nil
+        return self.currentConnection?.performSelect()
     }
     
     public func first<T>() -> T? {

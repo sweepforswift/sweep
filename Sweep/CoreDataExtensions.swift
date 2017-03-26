@@ -28,7 +28,7 @@ extension NSManagedObject: Database {
         return result
     }
     
-    public static func find(where: String, op: String, comparedTo: Any) -> QueryBuilder {
+    public static func find(where: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> QueryBuilder {
         return QueryBuilder(model: self.model).find(where: `where`, op: op, comparedTo: comparedTo)
     }
     

@@ -12,6 +12,7 @@
 		4C71F0271E61388C0049858B /* SweepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48DD531E6137A800CD4DFE /* SweepTests.swift */; };
 		4C71F0451E6149570049858B /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71F0441E6149570049858B /* JSONParser.swift */; };
 		4C74DB8C1E82E2B40012A93C /* ConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74DB8B1E82E2B40012A93C /* ConnectionProtocol.swift */; };
+		4C7530F31E87669B004BF7E7 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F21E87669B004BF7E7 /* Factory.swift */; };
 		4C86DE2F1E84586A00D78668 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C86DE2E1E84586A00D78668 /* CoreDataTest.swift */; };
 		4CE08C911E7CCBD500C75E76 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE08C901E7CCBD500C75E76 /* DatabaseProtocol.swift */; };
 		4CE08C951E7CCFF000C75E76 /* QueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE08C941E7CCFF000C75E76 /* QueryBuilder.swift */; };
@@ -47,6 +48,7 @@
 		4C71F0421E6149470049858B /* JSONParserTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParserTest.swift; sourceTree = "<group>"; };
 		4C71F0441E6149570049858B /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		4C74DB8B1E82E2B40012A93C /* ConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProtocol.swift; sourceTree = "<group>"; };
+		4C7530F21E87669B004BF7E7 /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		4C86DE2E1E84586A00D78668 /* CoreDataTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
 		4CE08C901E7CCBD500C75E76 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		4CE08C921E7CCEBB00C75E76 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		4C48DD511E6137A800CD4DFE /* SweepTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C7530F11E87668A004BF7E7 /* Helpers */,
 				4C48DD521E6137A800CD4DFE /* Info.plist */,
 				4C48DD531E6137A800CD4DFE /* SweepTests.swift */,
 				9F6F0AD21E617D3C0063C035 /* ArraysTest.swift */,
@@ -127,6 +130,14 @@
 				4C86DE2E1E84586A00D78668 /* CoreDataTest.swift */,
 			);
 			path = SweepTests;
+			sourceTree = "<group>";
+		};
+		4C7530F11E87668A004BF7E7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C7530F21E87669B004BF7E7 /* Factory.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		4CE08C8F1E7CCBBD00C75E76 /* Core Data */ = {
@@ -272,6 +283,7 @@
 			files = (
 				4C86DE2F1E84586A00D78668 /* CoreDataTest.swift in Sources */,
 				D6ED41621E613F7A0043DB0B /* WebRequestsTests.swift in Sources */,
+				4C7530F31E87669B004BF7E7 /* Factory.swift in Sources */,
 				4C71F0271E61388C0049858B /* SweepTests.swift in Sources */,
 				9F6F0AD31E617D3C0063C035 /* ArraysTest.swift in Sources */,
 				B2CCF5A31E61FDDE00E96B5B /* NSAttributedStringsTests.swift in Sources */,
