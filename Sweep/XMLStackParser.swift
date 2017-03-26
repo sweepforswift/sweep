@@ -25,11 +25,15 @@ public class XMLNode{
     var properties = [String:[XMLNode]]()
     var attributes = [String:String]()
     
-    public func deserialize<T: Decodable>() -> T?{
+    public func toObject<T: XMLable>() -> T?{
+        return T.build(node: self) as? T
+    }
+    
+    public func decode<T: Decodable>() -> T?{
         return T.decode(value: self.content) as! T?
     }
     
-    public func deserialize(format: String) -> Date?{
+    public func decode(toDate format: String) -> Date?{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
         return dateFormatter.date(from: self.content)
