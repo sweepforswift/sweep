@@ -9,11 +9,21 @@
 import Foundation
 
 public protocol XMLable{
+    /**
+     Creates an instance of the object based upon the XMLNode
+     - parameter node: The XML node being converted to an object
+     - returns: An instance of the object
+     */
     static func build(node: XMLNode) -> XMLable
     init(node: XMLNode)
 }
 
 public extension XMLable{
+    /**
+     Creates an instance of the object based upon the XMLNode
+     - parameter node: The XML node being converted to an object
+     - returns: An instance of the object
+     */
     public static func build(node: XMLNode) -> XMLable{
         return self.init(node: node)
     }
@@ -25,14 +35,27 @@ public class XMLNode{
     var properties = [String:[XMLNode]]()
     var attributes = [String:String]()
     
+    /**
+     Converts a non-leaf node to an object by passing the XMLNode to the constructor
+     - returns: An instance of the object
+     */
     public func toObject<T: XMLable>() -> T?{
         return T.build(node: self) as? T
     }
     
+    /**
+     Decodes a leaf node into its true value instead of a string
+     - returns: An instance of the leaf node cast to the proper type
+     */
     public func decode<T: Decodable>() -> T?{
         return T.decode(value: self.content) as! T?
     }
     
+    /**
+     Converts a date string leaf node to a date based upon the provided leaf node
+     - parameter toDate: The date format to the used
+     - returns: An instance of the date leaf node as an object
+     */
     public func decode(toDate format: String) -> Date?{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
@@ -41,6 +64,10 @@ public class XMLNode{
 }
 
 extension Sequence where Iterator.Element: XMLNode{
+    /**
+     Converts an array of non-leaf nodes to an objects by passing the XMLNode to the constructor for each node
+     - returns: An array of the objects
+     */
     public func deserialize<T: XMLable>() -> [T]?{
         return self.map({ element in
             return T.build(node: element) as! T
@@ -52,20 +79,24 @@ public class XMLStackParser: NSObject, XMLParserDelegate{
     var root: XMLNode?
     var stack = [XMLNode]()
     var currentNode: XMLNode?
-    private var types: [String: XMLable.Type]
     
     var currentElementName: String?
     var currentElementData = ""
     
-    init(types: [String: XMLable.Type]){
-        self.types = types
+    /**
+     Creates an XMLParser to parse an XML string
+     - parameter with: The XML string to parse
+     - returns: The root xml node
+     */
+    func parse(with string: String) -> XMLNode?{
+        return self.parse(with: string.data(using: .utf8)!)
     }
     
-    override init(){
-        self.types = [:]
-        super.init()
-    }
-    
+    /**
+     Creates an XMLParser to parse XML data
+     - parameter with: The XML data to parse
+     - returns: The root xml node
+     */
     func parse(with data: Data) -> XMLNode?{
         let xmlParser = XMLParser(data: data)
         xmlParser.delegate = self

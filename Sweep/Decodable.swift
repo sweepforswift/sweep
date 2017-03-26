@@ -9,6 +9,11 @@
 import Foundation
 
 public protocol Decodable{
+    /**
+     Decoes the string representation of the item to its true representation
+     - parameter value: The string to be converted
+     - returns: An instance of the object cast to the proper type
+     */
     static func decode(value: String) -> Decodable?
 }
 
