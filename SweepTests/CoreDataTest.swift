@@ -131,6 +131,23 @@ class CoreDataTest: XCTestCase {
         XCTAssertEqual(users?.count, 3)
     }
     
+    func testAndWhereClause(){
+        let user = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 25, "name":"John"])
+        _ = user.save()
+        
+        let user2 = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 35, "name": "Abe"])
+        _ = user2.save()
+        
+        let user3 = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 40, "name": "Bob"])
+        _ = user3.save()
+        
+        let user4 = userFactory(context: CoreDataORM.managedContext!, dict: ["age": 50, "name": "David"])
+        _ = user4.save()
+        
+        let users: [User]? = User.all().find(where: "age", op: .lessThan, comparedTo: 45).find(andWhere: "name", op: .lessThan, comparedTo: "Chris").get()
+        XCTAssertEqual(users?.count, 2)
+    }
+    
 }
 
 @objc(User)

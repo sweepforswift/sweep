@@ -78,4 +78,13 @@ public class CoreDataORM: ConnectionProtocol{
             fetchRequest?.predicate = compPred
         }
     }
+    
+    public func find(andWhere: String, op: NSComparisonPredicate.Operator, comparedTo: Any){
+        if fetchRequest?.predicate != nil{
+            let oldPred = fetchRequest?.predicate
+            let pred = NSComparisonPredicate(leftExpression: NSExpression(forKeyPath: "\(andWhere)"), rightExpression: NSExpression(forConstantValue: comparedTo), modifier: .direct, type: op)
+            let compPred = NSCompoundPredicate(andPredicateWithSubpredicates: [oldPred!, pred])
+            fetchRequest?.predicate = compPred
+        }
+    }
 }

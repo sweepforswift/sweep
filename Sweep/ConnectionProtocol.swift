@@ -19,11 +19,12 @@ public protocol ConnectionProtocol: class{
 //    func save() -> Bool
 //    func get<T>() -> [T]?
 //    func first<T>() -> T?
-     func find<T>(model:String, byId: Any, forKey: String) -> T?
-     func performSelect<T>() -> [T]?
-     func buildWhereClause(key: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> Any
-     func find(orWhere: String, op: NSComparisonPredicate.Operator, comparedTo:Any)
-     static func build() -> Self
+    func find<T>(model:String, byId: Any, forKey: String) -> T?
+    func performSelect<T>() -> [T]?
+    func buildWhereClause(key: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> Any
+    func find(orWhere: String, op: NSComparisonPredicate.Operator, comparedTo:Any)
+    func find(andWhere: String, op: NSComparisonPredicate.Operator, comparedTo: Any)
+    static func build() -> Self
     
-     init()
+    init()
 }

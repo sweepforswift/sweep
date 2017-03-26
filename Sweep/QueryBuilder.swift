@@ -55,15 +55,16 @@ public class QueryBuilder{
         return self
     }
     
-    public func find(andWhere: String, op:String, comparedTo: Any) -> QueryBuilder{
-        let fetchRequest = self.fetchRequest as? NSFetchRequest<NSFetchRequestResult>
+    public func find(andWhere: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> QueryBuilder{
+        /*let fetchRequest = self.fetchRequest as? NSFetchRequest<NSFetchRequestResult>
         guard let initialPredicate = fetchRequest?.predicate else{
             return self
         }
         let addedPredicate = NSPredicate(format: "\(andWhere) \(op) %@", [comparedTo])
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [initialPredicate, addedPredicate])
         fetchRequest?.predicate = compoundPredicate
-        self.fetchRequest = fetchRequest
+        self.fetchRequest = fetchRequest*/
+        self.currentConnection?.find(andWhere: andWhere, op: op, comparedTo: comparedTo)
         return self
     }
     
