@@ -9,26 +9,38 @@
 import Foundation
 
 public protocol XMLable{
-    static func build(node: XMLNode) -> Self
+    static func build(node: XMLNode) -> XMLable
     init(node: XMLNode)
 }
 
-public class XMLNode: XMLable{
+public extension XMLable{
+    public static func build(node: XMLNode) -> XMLable{
+        return self.init(node: node)
+    }
+}
+
+public class XMLNode{
     var name = ""
     var content = ""
-    var properties = [String:[XMLable]]()
+    var properties = [String:[XMLNode]]()
     var attributes = [String:String]()
     
-    public static func build(node: XMLNode) -> Self{
-       return self.init(node: node)
+    public func deserialize<T: Decodable>() -> T?{
+        return T.decode(value: self.content) as! T?
     }
     
-    required public init(node: XMLNode){
-        
+    public func deserialize(format: String) -> Date?{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: self.content)
     }
-    
-    init(){
-        
+}
+
+extension Sequence where Iterator.Element: XMLNode{
+    public func deserialize<T: XMLable>() -> [T]?{
+        return self.map({ element in
+            return T.build(node: element) as! T
+        })
     }
 }
 

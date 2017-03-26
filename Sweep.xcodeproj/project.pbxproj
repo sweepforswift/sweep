@@ -13,6 +13,7 @@
 		4C71F0451E6149570049858B /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C71F0441E6149570049858B /* JSONParser.swift */; };
 		4C7530F51E878045004BF7E7 /* XMLStackParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F41E878045004BF7E7 /* XMLStackParser.swift */; };
 		4C7530F71E88363F004BF7E7 /* XMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F61E88363F004BF7E7 /* XMLParserTests.swift */; };
+		4C7530F91E8843D6004BF7E7 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F81E8843D6004BF7E7 /* Decodable.swift */; };
 		9F6F0AD11E617D160063C035 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F0AD01E617D160063C035 /* Arrays.swift */; };
 		9F6F0AD31E617D3C0063C035 /* ArraysTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F0AD21E617D3C0063C035 /* ArraysTest.swift */; };
 		B2CCF5A31E61FDDE00E96B5B /* NSAttributedStringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCF5A21E61FDDE00E96B5B /* NSAttributedStringsTests.swift */; };
@@ -44,6 +45,7 @@
 		4C71F0441E6149570049858B /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		4C7530F41E878045004BF7E7 /* XMLStackParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLStackParser.swift; sourceTree = "<group>"; };
 		4C7530F61E88363F004BF7E7 /* XMLParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests.swift; sourceTree = "<group>"; };
+		4C7530F81E8843D6004BF7E7 /* Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
 		9F6F0AD01E617D160063C035 /* Arrays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		9F6F0AD21E617D3C0063C035 /* ArraysTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysTest.swift; sourceTree = "<group>"; };
 		B2CCF5A21E61FDDE00E96B5B /* NSAttributedStringsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringsTests.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				D6822EBF1E6179E0000BBD9A /* Request.swift */,
 				D600D0761E61A92E0037BBEC /* Status.swift */,
 				4C7530F41E878045004BF7E7 /* XMLStackParser.swift */,
+				4C7530F81E8843D6004BF7E7 /* Decodable.swift */,
 			);
 			path = Sweep;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				4C71F0451E6149570049858B /* JSONParser.swift in Sources */,
 				D6ED41601E613F440043DB0B /* WebRequests.swift in Sources */,
 				D6822EC01E6179E0000BBD9A /* Request.swift in Sources */,
+				4C7530F91E8843D6004BF7E7 /* Decodable.swift in Sources */,
 				D600D0771E61A92E0037BBEC /* Status.swift in Sources */,
 				4C7530F51E878045004BF7E7 /* XMLStackParser.swift in Sources */,
 			);
