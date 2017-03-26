@@ -22,7 +22,8 @@ public protocol ConnectionProtocol: class{
      func find<T>(model:String, byId: Any, forKey: String) -> T?
      func performSelect<T>() -> [T]?
      func buildWhereClause(key: String, op: NSComparisonPredicate.Operator, comparedTo: Any) -> Any
-    static func build() -> Self
+     func find(orWhere: String, op: NSComparisonPredicate.Operator, comparedTo:Any)
+     static func build() -> Self
     
-    init()
+     init()
 }

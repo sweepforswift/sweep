@@ -69,4 +69,13 @@ public class CoreDataORM: ConnectionProtocol{
         fetchRequest?.predicate = pred
         return pred
     }
+    
+    public func find(orWhere: String, op: NSComparisonPredicate.Operator, comparedTo:Any){
+        if fetchRequest?.predicate != nil{
+            let oldPred = fetchRequest?.predicate
+            let pred = NSComparisonPredicate(leftExpression: NSExpression(forKeyPath: "\(orWhere)"), rightExpression: NSExpression(forConstantValue: comparedTo), modifier: .direct, type: op)
+            let compPred = NSCompoundPredicate(orPredicateWithSubpredicates: [oldPred!, pred])
+            fetchRequest?.predicate = compPred
+        }
+    }
 }
