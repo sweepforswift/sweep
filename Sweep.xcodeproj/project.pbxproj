@@ -14,6 +14,13 @@
 		4C7530F51E878045004BF7E7 /* XMLStackParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F41E878045004BF7E7 /* XMLStackParser.swift */; };
 		4C7530F71E88363F004BF7E7 /* XMLParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F61E88363F004BF7E7 /* XMLParserTests.swift */; };
 		4C7530F91E8843D6004BF7E7 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F81E8843D6004BF7E7 /* Decodable.swift */; };
+		4C74DB8C1E82E2B40012A93C /* ConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C74DB8B1E82E2B40012A93C /* ConnectionProtocol.swift */; };
+		4C7530F31E87669B004BF7E7 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7530F21E87669B004BF7E7 /* Factory.swift */; };
+		4C86DE2F1E84586A00D78668 /* CoreDataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C86DE2E1E84586A00D78668 /* CoreDataTest.swift */; };
+		4CE08C911E7CCBD500C75E76 /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE08C901E7CCBD500C75E76 /* DatabaseProtocol.swift */; };
+		4CE08C951E7CCFF000C75E76 /* QueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE08C941E7CCFF000C75E76 /* QueryBuilder.swift */; };
+		4CE08C971E7CD26900C75E76 /* CoreDataORM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE08C961E7CD26900C75E76 /* CoreDataORM.swift */; };
+		4CE08C981E7CD83300C75E76 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE08C921E7CCEBB00C75E76 /* CoreDataExtensions.swift */; };
 		9F6F0AD11E617D160063C035 /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F0AD01E617D160063C035 /* Arrays.swift */; };
 		9F6F0AD31E617D3C0063C035 /* ArraysTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F0AD21E617D3C0063C035 /* ArraysTest.swift */; };
 		B2CCF5A31E61FDDE00E96B5B /* NSAttributedStringsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CCF5A21E61FDDE00E96B5B /* NSAttributedStringsTests.swift */; };
@@ -46,6 +53,13 @@
 		4C7530F41E878045004BF7E7 /* XMLStackParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLStackParser.swift; sourceTree = "<group>"; };
 		4C7530F61E88363F004BF7E7 /* XMLParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParserTests.swift; sourceTree = "<group>"; };
 		4C7530F81E8843D6004BF7E7 /* Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Decodable.swift; sourceTree = "<group>"; };
+		4C74DB8B1E82E2B40012A93C /* ConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionProtocol.swift; sourceTree = "<group>"; };
+		4C7530F21E87669B004BF7E7 /* Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
+		4C86DE2E1E84586A00D78668 /* CoreDataTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTest.swift; sourceTree = "<group>"; };
+		4CE08C901E7CCBD500C75E76 /* DatabaseProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
+		4CE08C921E7CCEBB00C75E76 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
+		4CE08C941E7CCFF000C75E76 /* QueryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryBuilder.swift; sourceTree = "<group>"; };
+		4CE08C961E7CD26900C75E76 /* CoreDataORM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataORM.swift; sourceTree = "<group>"; };
 		9F6F0AD01E617D160063C035 /* Arrays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		9F6F0AD21E617D3C0063C035 /* ArraysTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArraysTest.swift; sourceTree = "<group>"; };
 		B2CCF5A21E61FDDE00E96B5B /* NSAttributedStringsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAttributedStringsTests.swift; sourceTree = "<group>"; };
@@ -96,6 +110,7 @@
 		4C48DD4C1E6137A000CD4DFE /* Sweep */ = {
 			isa = PBXGroup;
 			children = (
+				4CE08C8F1E7CCBBD00C75E76 /* Core Data */,
 				B2CCF5A41E61FDF300E96B5B /* AttributedStrings.swift */,
 				4C48DD4D1E6137A000CD4DFE /* Info.plist */,
 				4C48DD4E1E6137A000CD4DFE /* Sweep.h */,
@@ -113,6 +128,7 @@
 		4C48DD511E6137A800CD4DFE /* SweepTests */ = {
 			isa = PBXGroup;
 			children = (
+				4C7530F11E87668A004BF7E7 /* Helpers */,
 				4C48DD521E6137A800CD4DFE /* Info.plist */,
 				4C48DD531E6137A800CD4DFE /* SweepTests.swift */,
 				9F6F0AD21E617D3C0063C035 /* ArraysTest.swift */,
@@ -120,8 +136,29 @@
 				4C71F0421E6149470049858B /* JSONParserTest.swift */,
 				D6ED41611E613F7A0043DB0B /* WebRequestsTests.swift */,
 				4C7530F61E88363F004BF7E7 /* XMLParserTests.swift */,
+				4C86DE2E1E84586A00D78668 /* CoreDataTest.swift */,
 			);
 			path = SweepTests;
+			sourceTree = "<group>";
+		};
+		4C7530F11E87668A004BF7E7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4C7530F21E87669B004BF7E7 /* Factory.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		4CE08C8F1E7CCBBD00C75E76 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				4CE08C901E7CCBD500C75E76 /* DatabaseProtocol.swift */,
+				4CE08C921E7CCEBB00C75E76 /* CoreDataExtensions.swift */,
+				4CE08C941E7CCFF000C75E76 /* QueryBuilder.swift */,
+				4CE08C961E7CD26900C75E76 /* CoreDataORM.swift */,
+				4C74DB8B1E82E2B40012A93C /* ConnectionProtocol.swift */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,14 +272,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CE08C981E7CD83300C75E76 /* CoreDataExtensions.swift in Sources */,
 				9F6F0AD11E617D160063C035 /* Arrays.swift in Sources */,
 				B2CCF5A51E61FDF300E96B5B /* AttributedStrings.swift in Sources */,
 				4C71F0451E6149570049858B /* JSONParser.swift in Sources */,
+				4CE08C971E7CD26900C75E76 /* CoreDataORM.swift in Sources */,
 				D6ED41601E613F440043DB0B /* WebRequests.swift in Sources */,
 				D6822EC01E6179E0000BBD9A /* Request.swift in Sources */,
 				4C7530F91E8843D6004BF7E7 /* Decodable.swift in Sources */,
 				D600D0771E61A92E0037BBEC /* Status.swift in Sources */,
 				4C7530F51E878045004BF7E7 /* XMLStackParser.swift in Sources */,
+				4CE08C951E7CCFF000C75E76 /* QueryBuilder.swift in Sources */,
+				4CE08C911E7CCBD500C75E76 /* DatabaseProtocol.swift in Sources */,
+				4C74DB8C1E82E2B40012A93C /* ConnectionProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +293,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C7530F71E88363F004BF7E7 /* XMLParserTests.swift in Sources */,
+				4C86DE2F1E84586A00D78668 /* CoreDataTest.swift in Sources */,
 				D6ED41621E613F7A0043DB0B /* WebRequestsTests.swift in Sources */,
+				4C7530F31E87669B004BF7E7 /* Factory.swift in Sources */,
 				4C71F0271E61388C0049858B /* SweepTests.swift in Sources */,
 				9F6F0AD31E617D3C0063C035 /* ArraysTest.swift in Sources */,
 				B2CCF5A31E61FDDE00E96B5B /* NSAttributedStringsTests.swift in Sources */,
